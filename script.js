@@ -1,27 +1,39 @@
-const noButton = document.getElementById('no-button');
-const yesButton = document.getElementById('yes-button');
-const initialScreen = document.getElementById('initial-screen');
-const thankYouScreen = document.getElementById('thank-you-screen');
-const backButton = document.getElementById('back-button');
+document.addEventListener('DOMContentLoaded', () => {
+    const noButton = document.getElementById('no-button');
+    const yesButton = document.getElementById('yes-button');
+    const popup = document.getElementById('popup');
 
-noButton.addEventListener('mouseover', function() {
-    const windowWidth = window.innerWidth - noButton.clientWidth;
-    const windowHeight = window.innerHeight - noButton.clientHeight;
+    function moveButton() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+        
+        // Ensure the button stays within the viewport
+        const x = Math.random() * (viewportWidth - buttonWidth);
+        const y = Math.random() * (viewportHeight - buttonHeight);
+        noButton.style.transform = `translate(${x}px, ${y}px)`;
+    }
 
-    const randomX = Math.random() * windowWidth;
-    const randomY = Math.random() * windowHeight;
+    function startMoving() {
+        moveButton();
+        // Move the button every 500 milliseconds
+        noButton.intervalId = setInterval(moveButton, 500);
+    }
 
-    noButton.style.position = 'absolute';
-    noButton.style.left = `${randomX}px`;
-    noButton.style.top = `${randomY}px`;
-});
+    noButton.addEventListener('mouseover', () => {
+        moveButton();
+    });
 
-yesButton.addEventListener('click', function() {
-    initialScreen.style.display = 'none';
-    thankYouScreen.style.display = 'block';
-});
+    noButton.addEventListener('click', () => {
+        clearInterval(noButton.intervalId); // Stop moving the button
+        popup.classList.remove('hidden');
+    });
 
-backButton.addEventListener('click', function() {
-    thankYouScreen.style.display = 'none';
-    initialScreen.style.display = 'block';
+    yesButton.addEventListener('click', () => {
+        window.location.href = 'outra-pagina.html'; // Altere para o caminho da nova página
+    });
+
+    // Start moving the button
+    startMoving();
 });
