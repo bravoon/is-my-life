@@ -1,85 +1,57 @@
 body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fce4ec;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background-image: url('fundo-romantico.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Prevent scrolling to keep the button visible */
 }
 
-.container, .thank-you-screen {
+.container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.message p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+}
+
+#yes-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#no-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.popup {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none; /* Esconde as telas por padrão */
-}
-
-#initial-screen {
-    display: block; /* Mostra a tela inicial */
-}
-
-.thank-you-screen {
-    display: none; /* Esconde a tela de agradecimento por padrão */
-}
-
-h1 {
-    color: #d32f2f;
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f48fb1;
-    color: white;
-    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
-button:hover {
-    background-color: #d81b60;
-    transform: scale(1.1);
-}
-/* Estilos padrão para desktop */
-body {
-    font-size: 16px;
-}
-
-/* Estilos para dispositivos com largura máxima de 600px (móveis) */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+.hidden {
+    display: none;
 }
